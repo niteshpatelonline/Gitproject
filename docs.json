@@ -1,0 +1,123 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "gmail-controller",
+			"description": "Gmail Controller"
+		}
+	],
+	"paths": {
+		"/": {
+			"get": {
+				"tags": [
+					"gmail-controller"
+				],
+				"summary": "welcome",
+				"operationId": "welcomeUsingGET",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/sendEmail": {
+			"post": {
+				"tags": [
+					"gmail-controller"
+				],
+				"summary": "sendingEmail",
+				"operationId": "sendingEmailUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "gmailRequest",
+						"description": "gmailRequest",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Gmail"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Gmail": {
+			"type": "object",
+			"properties": {
+				"message": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"subject": {
+					"type": "string"
+				},
+				"to": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
